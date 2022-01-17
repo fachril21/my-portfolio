@@ -1,6 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
+  target: "static",
   head: {
     title: "my-portfolio",
     htmlAttrs: {
@@ -12,11 +13,22 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: "https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css",
+      },
+    ],
+    script: [
+      {
+        src: "https://unpkg.com/boxicons@2.1.1/dist/boxicons.js",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/style.css"],
+  css: ["@/assets/style.css", "boxicons/css/boxicons.min.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

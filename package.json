@@ -11,6 +11,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@vue/composition-api": "^1.4.4",
+    "boxicons": "^2.1.1",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7"
   },

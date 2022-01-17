@@ -7,6 +7,8 @@ export const state = () => ({
   isMobileView: false,
   isMobileMenuOpen: false,
   isMenuCollapsed: false,
+  filters: [],
+  isFilterEmpty: true,
 });
 
 export const mutations = {
@@ -18,6 +20,22 @@ export const mutations = {
   },
   setIsMenuCollapsed(state, payload) {
     state.isMenuCollapsed = payload;
+  },
+  addFilters(state, payload) {
+    if (!state.filters.includes(payload)) {
+      state.filters.push(payload);
+    }
+  },
+  removeFilters(state, payload) {
+    for (let index = 0; index < state.filters.length; index++) {
+      const element = state.filters[index];
+      if (element == payload) {
+        state.filters.splice(index, 1);
+      }
+    }
+  },
+  removeAllFilters(state) {
+    state.filters = [];
   },
 };
 
@@ -41,7 +59,10 @@ export const getters = {
   isMobileMenuOpen(state) {
     return state.isMobileMenuOpen;
   },
-  setIsMenuCollapsed(state) {
+  isMenuCollapsed(state) {
     return state.isMenuCollapsed;
+  },
+  filters(state) {
+    return state.filters;
   },
 };

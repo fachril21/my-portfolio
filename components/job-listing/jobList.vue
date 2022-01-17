@@ -51,6 +51,7 @@
             v-for="language in data.languages"
             :key="language"
             class="badge bg-project-light-green hover:bg-project-green transition-all ease-in-out duration-300 px-4 text-project-green hover:text-white font-bold rounded-md py-2 mx-2"
+            @click="addFilter(language)"
           >
             {{ language }}
           </div>
@@ -64,6 +65,14 @@
 export default {
   props: {
     data: Object,
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    addFilter(value) {
+      this.$store.commit("addFilters", value);
+    },
   },
 };
 </script>
