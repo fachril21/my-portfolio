@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-container h-full" :class="{ 'h-screen': !listVisible }">
+  <div
+    class="bg-container h-full"
+    :class="{ 'h-screen': !listVisible, 'h-screen': isEmpty }"
+  >
     <div class="header-job-listing bg-header relative">
       <img
         :src="
@@ -12,7 +15,7 @@
     </div>
     <div class="sm:container sm:mx-auto py-16 px-24">
       <transition name="fade" mode="out-in">
-        <div v-if="filterVisible" class="relative">
+        <div v-if="listVisible" class="relative">
           <div
             class="w-full h-20 bg-white rounded-md filter-position shadow-xl flex items-center px-8"
           >
@@ -37,6 +40,15 @@
                   </div>
                 </div>
               </div>
+              <div class="flex ml-8 items-center">
+                <input
+                  type="text"
+                  placeholder="Search tag job"
+                  class="focus:outline-none"
+                  v-model="tagValue"
+                  v-on:keyup.enter="onEnter(tagValue)"
+                />
+              </div>
             </div>
             <div class="inline ml-6">
               <button
@@ -55,7 +67,12 @@
         </div>
         <transition name="fade">
           <div v-if="listVisible">
-            <job-list v-for="item in dataShow" :key="item.id" :data="item" />
+            <div v-if="!isEmpty">
+              <job-list v-for="item in dataShow" :key="item.id" :data="item" />
+            </div>
+            <div v-if="isEmpty" class="flex justify-center my-24">
+              <span class="text-md font-semibold text-gray-900">Sorry, the data you are looking for has not been found 😣</span>
+            </div>
           </div>
         </transition>
       </div>
@@ -74,7 +91,8 @@ export default {
       dataShow: [],
       data: [],
       listVisible: false,
-      filterVisible: false,
+      isEmpty: false,
+      tagValue: "",
     };
   },
   computed: {
@@ -93,11 +111,16 @@ export default {
     },
     filters: function (val, oldVal) {
       if (this.filters.length > 0) {
-        this.filterVisible = true;
         this.dataShow = [];
         this.data.forEach((elementData) => {
           this.filters.forEach((elementFilters) => {
-            if (elementData.languages.includes(elementFilters)) {
+            var found = elementData.languages.find((elementLanguage) => {
+              return (
+                elementLanguage.toLowerCase() === elementFilters.toLowerCase()
+              );
+            });
+
+            if (found !== undefined) {
               if (!this.dataShow.includes(elementData)) {
                 this.dataShow.push(elementData);
               }
@@ -105,9 +128,17 @@ export default {
           });
         });
       } else {
-        this.filterVisible = false;
         this.dataShow = this.data;
       }
+    },
+
+    dataShow: function (val, oldVal) {
+      if (this.dataShow.length > 0) {
+        this.isEmpty = false;
+      } else {
+        this.isEmpty = true;
+      }
+      console.log("isEmpty " + this.isEmpty);
     },
   },
   methods: {
@@ -131,6 +162,11 @@ export default {
 
     clearFilters() {
       this.$store.commit("removeAllFilters");
+    },
+
+    onEnter(value) {
+      this.$store.commit("addFilters", value);
+      this.tagValue = "";
     },
   },
   mounted() {

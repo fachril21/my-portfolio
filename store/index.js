@@ -22,7 +22,11 @@ export const mutations = {
     state.isMenuCollapsed = payload;
   },
   addFilters(state, payload) {
-    if (!state.filters.includes(payload)) {
+    const found = state.filters.find((element) => {
+      return element.toLowerCase() === payload.toLowerCase();
+    });
+
+    if (found === undefined) {
       state.filters.push(payload);
     }
   },
