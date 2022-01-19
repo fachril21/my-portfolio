@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="bg-container h-full"
-    :class="{ 'h-screen': !listVisible, 'h-screen': isEmpty }"
-  >
+  <div class="bg-container min-h-screen">
     <div class="header-job-listing bg-header relative">
       <img
         :src="
@@ -13,10 +10,11 @@
         alt="header"
       />
     </div>
-    <div class="sm:container sm:mx-auto py-16 px-24">
+    <div class="sm:container sm:mx-auto container mx-auto lg:py-16 py-8 px-4">
       <transition name="fade" mode="out-in">
         <div v-if="listVisible" class="relative">
           <div
+            v-if="!isMobileView"
             class="w-full h-20 bg-white rounded-md filter-position shadow-xl flex items-center px-8"
           >
             <div class="inline flex w-full">
@@ -59,6 +57,52 @@
               </button>
             </div>
           </div>
+          <div v-if="isMobileView">
+            <div
+              class="w-full bg-white rounded-md shadow-xl flex flex-col items-center px-8"
+            >
+              <div class="flex flex-row w-full my-4">
+                <input
+                  type="text"
+                  placeholder="Search tag job"
+                  class="focus:outline-none w-full"
+                  v-model="tagValue"
+                  v-on:keyup.enter="onEnter(tagValue)"
+                />
+                <button
+                  class="text-project-green font-bold focus:outline-none"
+                  @click="clearFilters"
+                >
+                  Clear
+                </button>
+              </div>
+              <div
+                v-if="filters.length > 0"
+                class="flex flex-wrap w-full my-4 gap-2"
+              >
+                <div
+                  v-for="item in filters"
+                  :key="item"
+                  class="flex-col bg-project-light-green text-project-green font-bold rounded-md overflow-hidden"
+                >
+                  <div class="flex">
+                    <div class="flex-col mr-2 pl-4 py-2 flex items-center">
+                      {{ item }}
+                    </div>
+                    <div
+                      class="flex-col py-2 bg-project-green px-2 flex items-center text-white hover:bg-gray-900 transition-all ease-in-out duration-300 cursor-pointer"
+                      @click="removeFilters(item)"
+                    >
+                      <span>
+                        <i class="bx bx-x"></i>
+                      </span>
+                      <!-- <box-icon name="x" class=""></box-icon> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </transition>
       <div class="job-list">
@@ -71,7 +115,9 @@
               <job-list v-for="item in dataShow" :key="item.id" :data="item" />
             </div>
             <div v-if="isEmpty" class="flex justify-center my-24">
-              <span class="text-md font-semibold text-gray-900">Sorry, the data you are looking for has not been found 😣</span>
+              <span class="text-md font-semibold text-gray-900"
+                >Sorry, the data you are looking for has not been found 😣</span
+              >
             </div>
           </div>
         </transition>
@@ -180,7 +226,7 @@ export default {
 }
 
 .bg-container {
-  background-color: #f0fafb;
+  background-color: #eef7f6;
 }
 
 .filter-position {
