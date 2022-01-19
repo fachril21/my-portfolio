@@ -10,7 +10,10 @@
         alt="header"
       />
     </div>
-    <div class="sm:container sm:mx-auto container mx-auto lg:py-16 py-8 px-4">
+    <div
+      class="sm:container sm:mx-auto lg:py-16 py-8 px-4"
+      :class="{ 'px-48': !isMobileView }"
+    >
       <transition name="fade" mode="out-in">
         <div v-if="listVisible" class="relative">
           <div
