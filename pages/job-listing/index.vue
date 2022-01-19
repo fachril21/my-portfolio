@@ -184,7 +184,6 @@ export default {
       } else {
         this.isEmpty = true;
       }
-      console.log("isEmpty " + this.isEmpty);
     },
   },
   methods: {
@@ -217,6 +216,7 @@ export default {
   },
   mounted() {
     this.getData();
+    console.log(this.isMobileView);
   },
 };
 </script>
