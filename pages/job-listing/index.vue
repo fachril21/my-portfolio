@@ -1,5 +1,6 @@
 <template>
   <div class="bg-container min-h-screen">
+    <back-button class="z-50" />
     <div class="header-job-listing bg-header relative">
       <img
         :src="
@@ -130,10 +131,11 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import BackButton from "~/components/BackButton.vue";
 import JobList from "~/components/job-listing/jobList.vue";
 import JobListSkeleton from "~/components/job-listing/jobListSkeleton.vue";
 export default {
-  components: { JobList, JobListSkeleton },
+  components: { JobList, JobListSkeleton, BackButton },
   setup() {},
   data() {
     return {

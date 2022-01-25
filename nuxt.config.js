@@ -3,7 +3,7 @@ export default {
   ssr: false,
   target: "static",
   head: {
-    title: "my-portfolio",
+    title: "Portfolio - Fachril R. Zulfidar",
     htmlAttrs: {
       lang: "en",
     },

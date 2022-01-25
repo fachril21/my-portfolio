@@ -2,6 +2,7 @@
   <div
     class="relative min-h-screen bg-cover bg-gradient-to-r from-purple-100 to-purple-200"
   >
+    <back-button class="z-50"/>
     <div class="container mx-auto py-12">
       <div class="grid grid-cols-12 z-10">
         <div class="col-span-12 flex justify-center mb-8 z-10">
@@ -52,11 +53,12 @@
 </template>
 
 <script>
+import BackButton from "~/components/BackButton.vue";
 import Card from "~/components/pricing/Card.vue";
 import Toggle from "~/components/pricing/Toggle.vue";
 
 export default {
-  components: { Toggle, Card },
+  components: { Toggle, Card, BackButton },
   data() {
     return {
       isMonthly: false,

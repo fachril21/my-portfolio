@@ -1,19 +1,5 @@
 <template>
   <div>
-    <div v-if="route != '/'" class="bg-white px-8 py-4">
-      <a href="/">
-        <div
-          class="flex flex-row h-8 gap-2 items-center text-blue-700 hover:text-blue-800 transition-all ease-in-out duration-300"
-        >
-          <div
-            class="h-6 w-6 bg-blue-100 flex items-center justify-center rounded-full"
-          >
-            <i class="bx bx-chevron-left"></i>
-          </div>
-          <span class="font-bold"> Back to Dashboard </span>
-        </div>
-      </a>
-    </div>
     <Nuxt />
   </div>
 </template>
@@ -63,3 +49,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+  transition: all ease-in-out;
+  transition-duration: 500;
+}
+</style>
