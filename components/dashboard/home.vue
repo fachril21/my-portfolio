@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="flex flex-col my-4">
-          <div class="text-xl lg:text-xl font-black mb-4">Latest Work</div>
+          <div class="text-xl lg:text-xl font-black mb-4">My Playground</div>
           <div class="flex overflow-x-auto p-2 h-full">
             <div class="flex flex-nowrap gap-4 h-full">
               <div
@@ -31,19 +31,10 @@
                 v-for="item in data"
                 :key="item.id"
               >
-                <nuxt-link :to="item.url">
+                <a :href="item.url" target="_blank">
                   <div class="flex flex-col">
                     <img
-                      class="
-                        w-full
-                        h-auto
-                        rounded-2xl
-                        shadow-lg
-                        transform
-                        transition
-                        duration-500
-                        hover:scale-105
-                      "
+                      class="w-full h-auto rounded-2xl shadow-lg transform transition duration-500 hover:scale-105"
                       :src="require('~/assets/dashboard/' + item.image)"
                       :alt="item.title"
                     />
@@ -67,7 +58,7 @@
                       </span>
                     </div>
                   </div>
-                </nuxt-link>
+                </a>
               </div>
             </div>
           </div>
@@ -90,7 +81,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: false,
           image: "pricing-page.png",
-          url: "/pricing",
+          url: "https://price-page-fachril21.netlify.app/",
         },
         {
           id: 2,
@@ -99,7 +90,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: true,
           image: "job-list.png",
-          url: "/job-listing",
+          url: "https://job-listing-fachril21.netlify.app/",
         },
         {
           id: 3,
@@ -108,7 +99,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: false,
           image: "pricing-page.png",
-          url: "/pricing",
+          url: "https://price-page-fachril21.netlify.app/",
         },
         {
           id: 4,
@@ -117,7 +108,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: true,
           image: "job-list.png",
-          url: "/job-listing",
+          url: "https://job-listing-fachril21.netlify.app/",
         },
         {
           id: 5,
@@ -126,7 +117,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: false,
           image: "pricing-page.png",
-          url: "/pricing",
+          url: "https://price-page-fachril21.netlify.app/",
         },
         {
           id: 6,
@@ -135,7 +126,7 @@ export default {
           breakpointDesktop: true,
           breakpointMobile: true,
           image: "job-list.png",
-          url: "/job-listing",
+          url: "https://job-listing-fachril21.netlify.app/",
         },
       ],
     };
