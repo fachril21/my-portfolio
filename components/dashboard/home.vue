@@ -23,14 +23,36 @@
           </div>
         </div>
         <div class="flex flex-col my-4">
-          <div class="text-xl lg:text-xl font-black mb-4">My Playground</div>
-          <div class="flex overflow-x-auto p-2 h-full">
-            <div class="flex flex-nowrap gap-4 h-full">
-              <div
-                class="w-40 h-full cursor-pointer"
-                v-for="item in data"
-                :key="item.id"
+          <div class="flex gap-8 justify-between items-center mb-8">
+            <div class="title font-semibold text-xl">My Playground</div>
+            <div class="flex gap-4">
+              <button
+                @click="onPrev"
+                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-blue-100 hover:text-blue-700 transition-all ease-in-out duration-300 text-xl focus:outline-none"
               >
+                <i class="bx bx-chevron-left"></i>
+              </button>
+              <button
+                @click="onNext"
+                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-blue-100 hover:text-blue-700 transition-all ease-in-out duration-300 text-xl focus:outline-none"
+              >
+                <i class="bx bx-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="list-container"
+            ref="listContainer"
+            class="p-4 flex overflow-hidden gap-4"
+          >
+            <div
+              id="list-items"
+              ref="listItems"
+              class="item"
+              v-for="item in data"
+              :key="item.id"
+            >
+              <div class="w-64">
                 <a :href="item.url" target="_blank">
                   <div class="flex flex-col">
                     <img
@@ -92,44 +114,26 @@ export default {
           image: "job-list.png",
           url: "https://job-listing-fachril21.netlify.app/",
         },
-        {
-          id: 3,
-          type: "Frontend Dev",
-          title: "Pricing Page",
-          breakpointDesktop: true,
-          breakpointMobile: false,
-          image: "pricing-page.png",
-          url: "https://price-page-fachril21.netlify.app/",
-        },
-        {
-          id: 4,
-          type: "Frontend Dev",
-          title: "Job List",
-          breakpointDesktop: true,
-          breakpointMobile: true,
-          image: "job-list.png",
-          url: "https://job-listing-fachril21.netlify.app/",
-        },
-        {
-          id: 5,
-          type: "Frontend Dev",
-          title: "Pricing Page",
-          breakpointDesktop: true,
-          breakpointMobile: false,
-          image: "pricing-page.png",
-          url: "https://price-page-fachril21.netlify.app/",
-        },
-        {
-          id: 6,
-          type: "Frontend Dev",
-          title: "Job List",
-          breakpointDesktop: true,
-          breakpointMobile: true,
-          image: "job-list.png",
-          url: "https://job-listing-fachril21.netlify.app/",
-        },
       ],
     };
+  },
+  methods: {
+    onNext() {
+      console.log("next");
+      this.$refs.listContainer.scrollBy({
+        top: 0,
+        left: +500,
+        behavior: "smooth",
+      });
+    },
+    onPrev() {
+      console.log("prev");
+      this.$refs.listContainer.scrollBy({
+        top: 0,
+        left: -500,
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>
