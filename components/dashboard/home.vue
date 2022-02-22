@@ -56,7 +56,7 @@
                 <a :href="item.url" target="_blank">
                   <div class="flex flex-col">
                     <img
-                      class="w-full h-auto rounded-2xl shadow-lg transform transition duration-500 hover:scale-105"
+                      class="w-full h-32 rounded-2xl shadow-lg transform transition duration-500 hover:scale-105 object-cover"
                       :src="require('~/assets/dashboard/' + item.image)"
                       :alt="item.title"
                     />
@@ -113,6 +113,15 @@ export default {
           breakpointMobile: true,
           image: "job-list.png",
           url: "https://job-listing-fachril21.netlify.app/",
+        },
+        {
+          id: 3,
+          type: "Frontend Dev",
+          title: "Where in The World?",
+          breakpointDesktop: true,
+          breakpointMobile: true,
+          image: "rest-countries.jpg",
+          url: "https://where-in-the-world-fachril.herokuapp.com/",
         },
       ],
     };
